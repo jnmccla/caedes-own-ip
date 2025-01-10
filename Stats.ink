@@ -1,22 +1,11 @@
-/* Jones Pronouns */
-VAR Xe = "Xe"
-VAR xe = "xe"
-VAR Xer = "Xer"
-VAR xer = "xer"
-VAR Xers = "Xers"
-VAR xers = "xers"
-VAR Xerss = "Xers"
-VAR xerss = "xers"
 
-LIST pronouns = p_he, p_she, p_they, p_it
 
 /* ---------------------------------
 
    Jones Stats
 
  ----------------------------------*/
-VAR firstName = "default"
-VAR gender = "default"
+
 
 
 VAR jonesRelationship_Brigid = 2

@@ -1,105 +1,5 @@
-== characterCreation ==
-= name
-EXTERNAL prompt(message, default)
-~firstName = prompt("What is your first name?", "Olivia")
-Thank you, {firstName} Jones.
-Next is some demographic information.
 
-* {gender == "default"}Continue
-    -> genderChoice
-+ {gender != "default"}Change gender
-    -> genderChoice
-+ {gender != "default"}Skip to change pronouns
-    ->pronounChoice
-+ {gender != "default"}Skip to retaking the psychological evaluation
-    ->psychEval
-+ {gender != "default"} I'm done.
-    ->results
-
-
-
-= genderChoice
-What is your gender? You will select pronouns separately.
-
-+ Woman
-    ~gender = "woman"
-+ Man
-    ~gender = "man"
-+ Nonbinary/other
-    ~gender = "nb"
-
--
-{Next you will choose your pronouns.|Do you want to change your pronouns as well?}
-+ {xe == "xe"}Continue
-    -> pronounChoice
-+ {xe != "xe"}Change name
-    -> name
-+ {gender != "default"}Change pronouns
-    ->pronounChoice
-+ {gender != "default"}Skip to retaking the psychological evaluation
-    ->psychEval
-+ {gender != "default"} I'm done.
-    ->results
-= pronounChoice
-What pronouns do you use?
-
-+ She/her
-    ~Xe="She"
-    ~xe="she"
-    ~Xer="Her"
-    ~xer="her"
-    ~Xers="Her"
-    ~xers="her"
-    ~Xerss="Hers"
-    ~xerss="hers"
-    ~pronouns += p_she
-+ He/him
-    ~Xe="He"
-    ~xe="he"
-    ~Xer="Him"
-    ~xer="him"
-    ~Xers="His"
-    ~xers="his"
-    ~Xerss="His"
-    ~xerss="his"
-    ~pronouns += p_he
-+ They/them
-    ~Xe="They"
-    ~xe="they"
-    ~Xer="Them"
-    ~xer="them"
-    ~Xers="Their"
-    ~xers="their"
-    ~Xerss="Theirs"
-    ~xerss="theirs"
-    ~pronouns += p_they
-
-+ It/its
-    ~Xe="It"
-    ~xe="it"
-    ~Xer="It"
-    ~xer="it"
-    ~Xers="Its"
-    ~xers="its"
-    ~Xerss="Its"
-    ~xerss="its"
-    ~pronouns += p_it
--
-Data restored. Next is a brief psychological evaluation.
-* {totalStats == 0}Continue to the psychological evaluation
-    -> psychEval
-+ {totalStats != 0}Change name
-    -> name
-+ {totalStats != 0}Change gender
-    ->genderChoice
-+ {totalStats != 0}Change pronouns
-    ->pronounChoice
-+ {totalStats != 0}Continue to the psychological evaluation
-    ->psychEval
-+ {totalStats != 0} I'm done.
-    ->results
-->psychEval
-= psychEval 
+== psychEval 
 ~ jonesFace = 0
 ~ jonesExpert = 0
 ~ jonesMuscle = 0
@@ -107,8 +7,6 @@ Data restored. Next is a brief psychological evaluation.
 ~ jonesDistraction = 0
 {|Very well, let's try this again.}
 
-*Continue
--
 
 1. Why do you want to join Caedes?
     + [For the love of adventure]
@@ -121,7 +19,7 @@ Data restored. Next is a brief psychological evaluation.
         ~alter(jonesExpert,1)
     + [To expand you network of friends and connections.]
         ~alter(jonesFace,1)
-    * You don't have a choice. #locked
+    * You don't have a choice. #UNCLICKABLE
 
 -
 #CLEAR
@@ -281,28 +179,17 @@ Total {totalStats}
 **/
 ->results
 = results
-So your name is {firstName} Jones. You are {gender == "nb": neither a man or a woman|a {gender}}, and your pronouns are {xe}/{xer}. According to your evaluation, you  are {jonesFace > 0:charming... }{jonesExpert > 0:intelligent... }{jonesMuscle > 0:hardy... }{jonesFixer > 0:unflappable... }{jonesDistraction > 0: unique... }Just what we're looking for in our new recruits.
+According to your evaluation, you  are <task>{jonesFace > 0:charming... }{jonesExpert > 0:intelligent... }{jonesMuscle > 0:hardy... }{jonesFixer > 0:unflappable... }{jonesDistraction > 0: unique... }<end>Just what we're looking for in our new recruits.
 Is this accurate?
 * [Yes] 
 #CLEAR
--> letsBegin
+    -> letsBegin
 + [No]
-    What is incorrect?
-    ++ Name
-        #CLEAR
-        ->name
-    ++ Gender
-        #CLEAR
-        ->genderChoice
-    ++ Pronouns
-        #CLEAR 
-        ->pronounChoice
-    ++ Psychological evaluation results
-        #CLEAR 
-        -> psychEval
+#CLEAR
+    -> psychEval
 
 == letsBegin
-Perfect. We look forward to your imminent enrollment.
+Perfect. Thank you for your prompt submission. We look forward to finalizing your enlistment Tuesday.
 *[Begin.]
 #CLEAR
     -> intro

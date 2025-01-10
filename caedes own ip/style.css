@@ -8,16 +8,16 @@ ADDED
 */
 
 
-.pass {
+body .inc {
     font-weight: bold;
     color: #228833
     }
     
-.fail {
+body .dec {
     font-weight: bold;
     color: #EE6677
     }
-    
+ /*   
 .approve {
     font-weight: bold;
     color: #AA3377;
@@ -33,9 +33,162 @@ ADDED
     color: #4477AA;
     }
 
+*/
+
+
+    
+    body .rel {
+        font-weight: bold;
+        /* font-family: 'Dobra Black', serif; */
+        color: #9900FF;
+        /* text-transform: uppercase; */
+    }
+    
+    body .sus {
+        font-weight: bold;
+        /* font-family: 'Dobra Black', serif; */
+        color: #FF9900;
+        /* text-transform: uppercase; */
+    }
+    
+    body .rom {
+        font-weight: bold;
+        /* font-family: 'Dobra Black', serif; */
+        color: #FF0099;
+        /* text-transform: uppercase; */
+    }
+    
+    body .stat {
+        font-weight: bold;
+        /* font-family: 'Dobra Black', serif; */
+        color: #0099FF;
+        /* text-transform: uppercase; */
+    }
+    body .sway {
+        font-weight: bold;
+        /* font-family: 'Dobra Black', serif; */
+        color: #669900;
+        /* text-transform: uppercase; */
+    }
+    
+    body .check {
+        font-weight:bold;
+        color: #7e796a;
+    }
+    
+    body .task {
+        font-weight:bold;
+        color: #86a979;
+    }  
+
+    /* Text you've read already */
+body .greyed {
+    opacity: 0.5;
+}
+
+/* Continue button */
+body .continue a {
+    background-color: #be3c1c;
+    width: 110%;
+    margin-left: -20px;
+    text-indent: 20px;
+    display: block;
+    font-family: 'dosis', sans-serif;
+    color: white !important; 
+    font-weight: 100;
+    font-size: 18pt;
+    line-height: 1.7em;
+    text-transform: uppercase;
+}
+
+/* Red check options */
+p.red{
+    width: 110%;
+    min-height: 1.3em;
+    text-indent: 0px;
+    margin-left: -20px;
+    margin-top: -1em;
+    background-color: #d8431c;
+    display: block;
+}
+
+p.red a {
+    font-size: 14pt;
+    color: #342b28;
+    line-height: 1.3em;
+    font-weight: medium;
+
+}
+
+p.red:hover a {
+    color: white;
+}
+
+/* White check options */
+p.white{
+    width: 110%;
+    min-height:1.3em;
+    text-indent: 0px;
+    margin-left: -20px;
+    margin-top: -1em;
+    background-color: #cbc5b7;
+    display: block;
+}
+
+p.white a {
+    font-size: 14pt;
+    color: #373735;
+    line-height: 1.3em;
+    font-weight: medium;
+
+}
+
+p.white:hover {
+    background-color: #858070;
+}
+
+p.white:hover a {
+    color: white;
+}
+
+/* Locked white check options*/
+p.locked{
+    width: 110%;
+    min-height:1.3em;
+    text-indent: 0px;
+    margin-left: -20px;
+    margin-top: -1em;
+    background-color: #d5cfbf;
+    display: block;
+}
+
+p.locked a {
+    font-size: 14pt;
+    color: #8b8576 !important;
+    line-height: 1.3em;
+    font-weight: medium;
+    pointer-events: none;
+}
+
+/* For the choices you've already picked */
+body .read a {
+    color: #8d331a !important;
+}
+
+.read:hover a {
+    color: white !important;
+    transition: color 0.1s;
+}
+   
+   
+   
+   
     /*
-    Main
-    */
+
+   End of added
+    
+   
+   */
 
 body {
     font-family: 'Open Sans', sans-serif;

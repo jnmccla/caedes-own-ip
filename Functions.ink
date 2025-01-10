@@ -1,12 +1,21 @@
-=== function is_are(x)
-    {
-    - LIST_COUNT(x) == 1:
-        ~ return "is"
-    - x ^ p_he || x ^ p_she || x ^ p_it:
-        ~ return "is"
-    - else:
-        ~ return "are"
+=== function chance(x) ===
+{x == 3:
+    ~return "Trivial:"
+}
+{x == 2:
+    ~return "Easy:"
     }
+ {x == 1:
+    ~return "Medium:"
+    } 
+{x == 0:
+    ~return "<check>Difficult:<end>"
+    }
+{x < 0:
+    ~return "Nightmare:"
+    }
+
+
 === function alter(ref x, k) ===
 ~ x = x + k
 

@@ -5,13 +5,7 @@
     // Create ink story from the content using inkjs
     var story = new inkjs.Story(storyContent);
 
-    /**added */
-    // Here's the function
-story.BindExternalFunction ("get_name", () => {
-    // 'prompt' is a built-in Javascript method
-    return prompt("Please enter your name", "Unknown Player");
-});
-/*end added*/
+   
 
     var savePoint = "";
 
@@ -43,6 +37,75 @@ story.BindExternalFunction ("get_name", () => {
 
     var storyContainer = document.querySelector('#story');
     var outerScrollContainer = document.querySelector('.outerContainer');
+
+    /*
+    
+    added
+    
+    */
+    
+    // name get function (old)
+    story.BindExternalFunction("prompt", prompt);
+    var rel = {
+        "jbrig" : "Jones toward Brigid",
+        "brigj" : "Brigid toward Jones",
+        "jfel" : "Jones toward Felixe",
+        "felj" : "Felixe toward Jones",
+        "jthom" : "Jones toward Thomas",
+        "thomj" : "Thomas toward Jones",
+        "jos" : "Jones toward Osbourne",
+        "osj" : "Osbourne toward Jones",
+    }
+    var sus = {
+        "jsbrig" : "Jones suspicious of Brigid",
+        "brigsj" : "Brigid suspicious of Jones",
+        "jsfel" : "Jones suspicious of Felixe",
+        "felsj" : "Felixe suspicious of Jones",
+        "jsthom" : "Jones suspicious of Thomas",
+        "thomsj" : "Thomas suspicious of Jones",
+        "jsos" : "Jones suspicious of Osbourne",
+        "ossj" : "Osbourne suspicous of Jones",
+    }
+    var rom = {
+        "jrbrig" : "Jones likes Brigid",
+        "brigrj" : "Brigid likes Jones",
+        "jrfel" : "Jones likes Felixe",
+        "felrj" : "Felixe likes Jones",
+    }
+    var stat = {
+        "exp" : "Expert",
+        "fix" : "Fixer",
+        "mus" : "Muscle",
+        "fac" : "Face",
+        "dis" : "Distraction",
+    }
+    var sway = {
+        "tcult" : "Thomas's influence",
+        "urge" : "Destructive urges",
+    }
+
+    var skills = {rel,sus,rom,stat,sway}
+
+    var checks = {
+        "tri" : "Trivial",
+        "eas" : "Easy",
+        "med" : "Medium",
+        "dif" : "Difficult",
+        "nih" : "Nightmare",
+        "imp" : "Impossible",
+        "suc" : "Success",
+        "fai" : "Failure",
+    }
+
+
+    /*
+    
+    end added
+    
+    */
+
+
+
 
     // page features setup
     setupTheme(globalTagTheme);
@@ -139,6 +202,43 @@ story.BindExternalFunction ("get_name", () => {
                 else if( splitTag && splitTag.property == "CLASS" ) {
                     customClasses.push(splitTag.val);
                 }
+                /*
+
+                added 
+
+                */
+
+               //SPEAKER: speaker
+               else if (splitTag && splitTag.property == "SPEAKER") {
+                var speaker = '<span class="name">'+splitTag.val+"</span> "
+                
+                // If it's a skill:
+                for(i in skills) {
+                    if(skills[i][splitTag.val]) {
+                        speaker = '<span class="'+i+'">'+skills[i][splitTag.val]+"</span> "
+                    }
+                }
+                if(newInnerText) {
+                    // This checks if there's a CHECK in play
+                    newInnerText = speaker+newInnerText
+                } else {
+                    newInnerText = speaker+'— '+paragraphText
+                }
+            }
+
+            //CHECK: che-ckk
+            else if (splitTag && splitTag.property == "CHECK") {
+                var diff =checks[splitTag.val.split('-')[0]]
+                var succ=checks[splitTag.val.split('-')[1]]
+                newInnerText = '<span class="check">[' + diff + ': ' + succ+']</span> — '+paragraphText
+            }
+
+
+            /*
+            
+            end of added
+
+            */
 
                 // CLEAR - removes all existing content.
                 // RESTART - clears everything and restarts the story from the beginning
@@ -161,10 +261,88 @@ story.BindExternalFunction ("get_name", () => {
                 continue; // Skip empty paragraphs
 		}
 
+        
             // Create paragraph element (initially hidden)
             var paragraphElement = document.createElement('p');
             paragraphElement.innerHTML = paragraphText;
             storyContainer.appendChild(paragraphElement);
+
+            /*
+
+            added
+
+            */
+           // Logic that adds classes to text based on flags in ink 
+           /*
+           if (choice.text.includes('▸')) {
+            choiceParagraphElement.classList.add("continue");
+            choice.text = "CONTINUE ▸";
+        } else if (choice.text.includes('■')) {
+            choiceParagraphElement.classList.add("continue");
+            choice.text = "END ■";
+        } else if (choice.text.includes('<locked>')) {
+            choiceParagraphElement.classList.add("locked");
+            choiceParagraphElement.classList.add("choice");
+            var textArray = choice.text.split('[')
+            var textPartOne = textArray[0]
+            var textPartTwo = textArray[1].split(']')[1]
+            choice.text = textPartOne + "[Locked]" +textPartTwo
+
+        } else if (choice.text.includes('<red>')) {
+            choiceParagraphElement.classList.add("red");
+            choiceParagraphElement.classList.add("choice");
+        } else if (choice.text.includes('<white>')) {
+            choiceParagraphElement.classList.add("white");
+            choiceParagraphElement.classList.add("choice");
+        } else if (choice.text.includes('<read>')) {
+            choiceParagraphElement.classList.add("read");
+            choiceParagraphElement.classList.add("choice");
+        } else {
+            choiceParagraphElement.classList.add("choice");
+        }
+        */
+
+
+           paragraphText = paragraphText.replace(/<end>/g, '</span>')
+
+           paragraphText = paragraphText.replace(/<rel>/g, '<span class="rel">')
+           paragraphText = paragraphText.replace(/<sus>/g, '<span class="sus">')
+           paragraphText = paragraphText.replace(/<rom>/g, '<span class="rom">')
+           paragraphText = paragraphText.replace(/<stat>/g, '<span class="stat">')
+           paragraphText = paragraphText.replace(/<sway>/g, '<span class="sway">')
+
+           paragraphText = paragraphText.replace(/<check>/g, '<span class="check">')
+           paragraphText = paragraphText.replace(/<task>/g, '<span class="task">')
+
+           paragraphText = paragraphText.replace(/<inc>/g, '<span class="inc">')
+           paragraphText = paragraphText.replace(/<dec>/g, '<span class="dec">')
+
+          
+
+
+           paragraphElement.innerHTML = paragraphText;
+           storyContainer.appendChild(paragraphElement);
+           
+           // Logic specific to YOU choices
+           var first_paragraph = document.querySelector("p:not(.greyed)");
+           if (first_paragraph.innerHTML.includes('<you>')) {
+               paragraphElement.classList.add("you");
+               paragraphElement.classList.add("greyed");
+               
+               // This automatically removes [] from choices; comment out if not desired.
+               var newtext = first_paragraph.innerHTML.replace(/\[/g, '');
+               newtext = newtext.replace(/\]/g, '');
+               first_paragraph.innerHTML = newtext;
+               
+           }
+
+           /*
+
+           end added
+
+           */
+
+
 
             // Add any custom classes derived from ink tags
             for(var i=0; i<customClasses.length; i++)
@@ -223,13 +401,34 @@ story.BindExternalFunction ("get_name", () => {
                     // Don't follow <a> link
                     event.preventDefault();
 
+                    /*
+
+                    added
+
+                    */
+
+                    //This is the code that makes the previous paragraphs grey out
+                var all_paragraphs = document.querySelectorAll('p');
+                for (const element of all_paragraphs) {
+                    element.classList.add("greyed");
+                }
+                    /*
+
+                    end added
+
+                    */
+
                     // Extend height to fit
                     // We do this manually so that removing elements and creating new ones doesn't
                     // cause the height (and therefore scroll) to jump backwards temporarily.
                     storyContainer.style.height = contentBottomEdgeY()+"px";
 
+                    //added
+                    removeAll("p.continue");
+
                     // Remove all existing choices
                     removeAll(".choice");
+                    
 
                     // Tell the story where to go next
                     story.ChooseChoiceIndex(choice.index);

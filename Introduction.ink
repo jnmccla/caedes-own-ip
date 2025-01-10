@@ -5,25 +5,26 @@ Maybe it wouldn't have been your dad -- your family.
 Maybe it would have been someone who actually wanted this, or at least was good at it.
 Or, maybe, in every world, every timeline, you are always Jones, freshman animation student, staring at an email on your phone reminding you of the quickly approaching deadline to pay for your first semester of school.
 Your phone vibrates and a caller ID takes up the screen.
-* [ ]
+* [➔]
 
 
 -
-<b>NATIONAL GUARD - PECULIAR RECRUITMENT OFFICE</b>
+<b>NATIONAL GUARD - SCARWITCH RECRUITMENT OFFICE</b>
 And there's the potential paycheck now.
 What do you do?
 * [Ignore it.]
     ~alter(jonesRelationship_Thomas,-1)
-    [info side = highlight]You can feel your recruiter's <mark>disappointment</mark> through the phone. [/info]
+    You can feel your recruiter's <dec>disappointment<end> through the phone.
      You ignore it. It's probably <>
 * [Answer it quickly.]
     ~alter(jonesRelationship_Thomas,1)
-    [info side = highlight] Surely your recruiter will <mark>appreciate</mark> your promptness. [/info]
+    Surely your recruiter will <inc>appreciate<end> your promptness.
     You answer it before the first ring ends, but it's <>
 * [Let it ring for a bit before answering.]
     You don't want to seem too eager, but it probably wouldn't look good to ignore it completely. When you do pick up, it's <>
 
-- just a robocaller reminding you about your appointment this afternoon, pretty soon after your next (and last) class of the day. You don't have a car yet, but you're sure your trusty scooter will do the job of getting you there well enough. 
+- just a robocaller reminding you about your appointment this afternoon, pretty soon after your next (and last) class of the day. 
+You don't have a car yet, but you're sure your trusty scooter will do the job of getting you there well enough. 
 The trusty scooter that you almost lose complete control over as someone tumbles into you. You recover quickly, though, and end up saving your accidental aggressor from falling face first onto the brick walkway.
 * [Whoops]
 #CLEAR
@@ -33,11 +34,11 @@ The trusty scooter that you almost lose complete control over as someone tumbles
 ~ typical(jonesExpert)
 { currentRoll:
     ~ alter(jonesSuspicious_Brigid, 1)
-    [info side = highlight]Smarts: Success [/info]
+    <inc>{chance(jonesExpert)} Expert: Success
     [info side = highlight]Something seems <mark>off</mark>...[/info]
     You think you smell something like burning hair, but you quickly forget about it as you help the person <>
     - else:
-    [info side = highlight]Smarts: Failure [/info]
+    <dec>{chance(jonesExpert)} Expert: Failure
     You help them <>
 }
 straighten up, and your face breaks into a wide grin. "Brigid?"
