@@ -1,18 +1,19 @@
+
 === function chance(x) ===
 {x == 3:
-    ~return "Trivial:"
+    ~return "<check>Trivial:<end>"
 }
 {x == 2:
-    ~return "Easy:"
+    ~return "<check>Easy:<end>"
     }
  {x == 1:
-    ~return "Medium:"
+    ~return "<check>Medium:<end>"
     } 
 {x == 0:
     ~return "<check>Difficult:<end>"
     }
 {x < 0:
-    ~return "Nightmare:"
+    ~return "<check>Nightmare:<end>"
     }
 
 

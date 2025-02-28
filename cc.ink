@@ -1,4 +1,6 @@
 
+    
+
 == psychEval 
 ~ jonesFace = 0
 ~ jonesExpert = 0
@@ -8,7 +10,7 @@
 {|Very well, let's try this again.}
 
 
-1. Why do you want to join Caedes?
+1. Why do you want to join the National Guard?
     + [For the love of adventure]
         ~alter(jonesDistraction,1)
     + [To test yourself mentally.]
@@ -194,6 +196,6 @@ Perfect. Thank you for your prompt submission. We look forward to finalizing you
 #CLEAR
     -> intro
     
-    
-    
+
+  
     

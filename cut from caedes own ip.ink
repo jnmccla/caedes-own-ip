@@ -1,3 +1,16 @@
+    
+  [➔] continue
+⇑ rel up
+⇓ rel down
+◉ sus
+⇀ stat up
+↽ stat down
+⚔ sway
+✠ tcult 
+
+<stat>Expert<end> - {chance(jonesExpert)} <inc>Success
+<stat>Expert<end> - {chance(jonesExpert)} <dec>Failure
+
 Welcome to Caedes, ¿? Jones. P -- 
 Corrupt data detected.
 Please enter missing data:
